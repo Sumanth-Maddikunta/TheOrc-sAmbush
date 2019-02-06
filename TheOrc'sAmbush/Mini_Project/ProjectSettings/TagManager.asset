@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bullet
+  - Ground
+  - Arrow
+  - PauseUI
+  - GameManager
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Enemy
+  - Player
+  - Flying_Base
+  - Enemy_Objects
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2933836687
+    locked: 0
+  - name: GroundElements
+    uniqueID: 183136651
+    locked: 0
+  - name: Game
+    uniqueID: 3721425871
+    locked: 0
+  - name: UI
+    uniqueID: 2369297807
+    locked: 0
