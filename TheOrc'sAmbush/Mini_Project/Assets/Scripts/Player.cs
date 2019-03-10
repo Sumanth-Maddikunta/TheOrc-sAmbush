@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public bool isPlayerAlive = true;
     public float speed;
     public bool canThrow=true;
+    public SpriteRenderer arrowMarks;
    
     
 
@@ -95,6 +96,11 @@ public class Player : MonoBehaviour
                     shootingAngle = (startMousePosition - (Vector2)transform.position);
                     angle = Mathf.Atan2(shootingAngle.y, shootingAngle.x);
 
+                    //PC TRIAL FOR ARROW REPRESENTATION
+
+                    arrowMarks.transform.rotation = Quaternion.Euler(arrowMarks.transform.rotation.x, arrowMarks.transform.rotation.y, angle);
+
+
 
                 }
                 if (Input.GetMouseButtonUp(0))
@@ -119,21 +125,21 @@ public class Player : MonoBehaviour
             #endregion
 
             #region Phone Touch Code
-            
-            if (SystemInfo.deviceType==DeviceType.Handheld)
-            {  
-                
-                if(Input.touchCount==1)
+
+            if (SystemInfo.deviceType == DeviceType.Handheld)
+            {
+
+                if (Input.touchCount == 1)
                 {
                     Touch touch = Input.GetTouch(0);
-                    if(touch.phase==TouchPhase.Began)
+                    if (touch.phase == TouchPhase.Began)
                     {
                         startMousePosition = Camera.main.ScreenToWorldPoint(touch.position);
                     }
-                    else if(touch.phase==TouchPhase.Ended)
+                    else if (touch.phase == TouchPhase.Ended)
                     {
                         endMousePosition = Camera.main.ScreenToWorldPoint(touch.position);
-                        if ((endMousePosition-startMousePosition).magnitude > 1f)
+                        if ((endMousePosition - startMousePosition).magnitude > 1f)
                         {
                             shootingAngle = (startMousePosition - (Vector2)transform.position);
                             angle = Mathf.Atan2(shootingAngle.y, shootingAngle.x);
@@ -142,7 +148,7 @@ public class Player : MonoBehaviour
                             animator.SetBool("Throw", true);
                             Invoke("setPlayerBoolFalse", 0.5f);
                             //endMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                            audioSource.PlayOneShot(throwAudioClip,0.5f);
+                            audioSource.PlayOneShot(throwAudioClip, 0.5f);
                             speed = (startMousePosition - endMousePosition).magnitude * 2;
                             GameObject bulletInstance = Instantiate(bulletPrefab);
                             bulletInstance.transform.position = hand.position;
@@ -150,14 +156,16 @@ public class Player : MonoBehaviour
                             Rigidbody2D rb = bulletInstance.GetComponent<Rigidbody2D>();
                             rb.AddForce(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * speed, ForceMode2D.Impulse);
                             Destroy(bulletInstance, 3f);
+
+
+                            //
                         }
                     }
-                }   
+                }
+            }
 
                 #endregion
-
-
-            }
+                                   
            
         }
 
